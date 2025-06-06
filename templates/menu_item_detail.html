@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+    <h1>{{item.meal}}</h1>
+    <p>{{item.description}}</p>
+    <p>{{item.price}} $</p>
+        <div>
+            {% if item.image %}<img src="{{ item.image.url }}" alt="{{ item.meal }}" class="img-fluid rounded" style="max-width: 300px;">
+            {% endif %}
+</div>
+    </div>
+{% endblock content%}
