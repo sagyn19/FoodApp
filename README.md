@@ -28,5 +28,9 @@ FoodApp is a Django-based web application for managing a restaurant's menu and c
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/FoodApp.git
+git clone https://github.com/sagyn19/FoodApp.git
 cd FoodApp
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python manage.py runserver
