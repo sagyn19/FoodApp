@@ -17,7 +17,7 @@ STATUS = (
 
 class Item(models.Model):
     meal = models.CharField(max_length=50)
-    description = models.CharField(max_length=2000)
+    description = models.TextField()
     price = models.DecimalField(decimal_places=2, max_digits=6)
     meal_type = models.CharField(choices=MEAL_TYPE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -28,6 +28,8 @@ class Item(models.Model):
 
     def __str__(self):
         return self.meal
+
+
 
 class Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)

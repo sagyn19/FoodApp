@@ -11,10 +11,10 @@ User = get_user_model()
 class ItemModelTest(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(username="testuser", password="testpass")
-
+        self.item = Item.objects.create(meal="Pizza", price=100, author=self.user)
     def test_str_method(self):
-        item = Item.objects.create(meal="Pizza", price=100, author=self.user)
-        self.assertEqual(str(item), "Pizza")
+        # item = Item.objects.create(meal="Pizza", price=100, author=self.user)
+        self.assertEqual(str(self.item), "Pizza")
 
 
 class ReviewFormTest(TestCase):

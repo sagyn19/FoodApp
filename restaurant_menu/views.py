@@ -11,7 +11,6 @@ from django.http import HttpResponseForbidden
 
 
 class MenuList(generic.ListView):
-
     queryset = Item.objects.order_by("date_created")
     template_name = 'index.html'
     context_object_name = 'object_list'
@@ -39,7 +38,7 @@ class About(generic.TemplateView):
 
 class AddItem(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView):
     model = Item
-    fields = '__all__'
+    fields = ['meal', 'description', 'price', 'meal_type', 'status', 'image']
     template_name = 'add_item.html'
     success_url = reverse_lazy('home')
 
@@ -48,6 +47,12 @@ class AddItem(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView):
 
     def handle_no_permission(self):
         return HttpResponseForbidden("You do not have permission to access this page.")
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        form.save()
+        return super().form_valid(form)
+
 
 class ReviewListView(generic.ListView):
     model = Review
